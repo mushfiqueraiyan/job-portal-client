@@ -9,9 +9,9 @@ const Banner = () => {
           <motion.div
             className="w-1/2 mt-40"
             animate={{
-              x: [-250, 5],
+              x: [-250, 0],
               transition: {
-                duration: 3,
+                duration: 1.5,
               },
             }}
           >
@@ -19,7 +19,7 @@ const Banner = () => {
               The <span className="text-blue-500">Easiest Way</span> to Get Your
               New Job
             </h1>
-            <p className="text-gray-700 mt-4 text-lg">
+            <p className="text-gray-700 mt-4 text-lg w-140">
               Each month, more than 3 million job seekers turn to our website in
               their search for work, making over 140,000 applications every
               single day.
