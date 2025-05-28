@@ -1,7 +1,20 @@
-import React from "react";
+import React, { use } from "react";
 import { Link, NavLink } from "react-router";
+import { AuthContext } from "../../context/AuthProvider";
+import { Loader2 } from "lucide-react";
+import { div } from "motion/react-client";
 
 const Navbar = () => {
+  const { user, loader, logout } = use(AuthContext);
+
+  const handleLogout = () => {
+    logout()
+      .then(() => {})
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
+
   return (
     <div>
       <div className="flex justify-between items-center py-2 px-3">
@@ -61,10 +74,51 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-3">
-          <Link className="btn text-blue-700 border-blue-700 btn-outline ">
-            Login
-          </Link>
-          <Link className="btn bg-blue-700 text-white">Register</Link>
+          {loader ? (
+            <Loader2 />
+          ) : user ? (
+            <div className="dropdown dropdown-end">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar"
+              >
+                <div className="w-10 rounded-full">
+                  <img alt={user.displayName} src={user.photoURL} />
+                </div>
+              </div>
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow"
+              >
+                <li>
+                  <p>
+                    <span className="font-bold">Name: </span>
+                    {user.displayName}
+                  </p>
+                </li>
+                <li
+                  className="bg-red-600 text-white rounded mt-3"
+                  onClick={handleLogout}
+                >
+                  <a>Logout</a>
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <div>
+              {" "}
+              <Link
+                to={"/login"}
+                className="btn text-blue-700 border-blue-700 btn-outline "
+              >
+                Login
+              </Link>
+              <Link to={"/register"} className="btn bg-blue-700 text-white">
+                Register
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </div>
