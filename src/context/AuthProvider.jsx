@@ -54,6 +54,10 @@ const AuthProvider = ({ children }) => {
     };
   }, []);
 
+  if (loader) {
+    <div>Loading...</div>;
+  }
+
   const authData = {
     user,
     setUser,

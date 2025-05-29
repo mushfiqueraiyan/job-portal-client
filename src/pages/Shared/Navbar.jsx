@@ -70,6 +70,21 @@ const Navbar = () => {
             >
               Contact
             </NavLink>
+
+            {user && (
+              <NavLink
+                className={({ isPending, isActive }) =>
+                  isPending
+                    ? "pending"
+                    : isActive
+                    ? "border-b-2 border-blue-700"
+                    : ""
+                }
+                to={"/myApplications"}
+              >
+                My Applications
+              </NavLink>
+            )}
           </nav>
         </div>
 
