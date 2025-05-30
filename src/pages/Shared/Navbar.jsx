@@ -17,80 +17,154 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className="flex justify-between items-center py-2 px-3">
-        <h1 className="font-bold text-3xl text-blue-600">Job Portal</h1>
-
-        <div>
-          <nav className="flex gap-16 items-center">
-            <NavLink
-              className={({ isPending, isActive }) =>
-                isPending
-                  ? "pending"
-                  : isActive
-                  ? "border-b-2 border-blue-700"
-                  : ""
-              }
-              to={"/"}
-            >
-              Home
-            </NavLink>
-            <NavLink
-              className={({ isPending, isActive }) =>
-                isPending
-                  ? "pending"
-                  : isActive
-                  ? "border-b-2 border-blue-700"
-                  : ""
-              }
-              to={"/jobs"}
-            >
-              Jobs
-            </NavLink>
-            <NavLink
-              className={({ isPending, isActive }) =>
-                isPending
-                  ? "pending"
-                  : isActive
-                  ? "border-b-2 border-blue-700"
-                  : ""
-              }
-              to={"/about"}
-            >
-              About
-            </NavLink>
-            <NavLink
-              className={({ isPending, isActive }) =>
-                isPending
-                  ? "pending"
-                  : isActive
-                  ? "border-b-2 border-blue-700"
-                  : ""
-              }
-              to={"/contact"}
-            >
-              Contact
-            </NavLink>
-
-            {user && (
-              <NavLink
-                className={({ isPending, isActive }) =>
-                  isPending
-                    ? "pending"
-                    : isActive
-                    ? "border-b-2 border-blue-700"
-                    : ""
-                }
-                to={"/myApplications"}
+      <div className="navbar bg-base-100 shadow-md">
+        <div className="navbar-start">
+          {/* Hamburger for small screens */}
+          <div className="dropdown">
+            <label tabIndex={0} className="btn btn-ghost lg:hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
               >
-                My Applications
-              </NavLink>
-            )}
-          </nav>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </label>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    isActive ? "text-blue-600 font-semibold" : ""
+                  }
+                >
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/jobs"
+                  className={({ isActive }) =>
+                    isActive ? "text-blue-600 font-semibold" : ""
+                  }
+                >
+                  Jobs
+                </NavLink>
+              </li>
+              {user && (
+                <>
+                  <li>
+                    <NavLink
+                      to="/myApplications"
+                      className={({ isActive }) =>
+                        isActive ? "text-blue-600 font-semibold" : ""
+                      }
+                    >
+                      My Applications
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/addJobs"
+                      className={({ isActive }) =>
+                        isActive ? "text-blue-600 font-semibold" : ""
+                      }
+                    >
+                      Add Jobs
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/myJobs"
+                      className={({ isActive }) =>
+                        isActive ? "text-blue-600 font-semibold" : ""
+                      }
+                    >
+                      My Jobs
+                    </NavLink>
+                  </li>
+                </>
+              )}
+            </ul>
+          </div>
+          {/* Logo */}
+          <h1 className="font-bold text-2xl text-blue-600 ml-2">Job Portal</h1>
         </div>
 
-        <div className="flex items-center gap-3">
+        {/* Center nav for large screens only */}
+        <div className="navbar-center hidden lg:flex">
+          <ul className="menu menu-horizontal px-1 gap-4">
+            <li>
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  isActive ? "text-blue-600 font-semibold" : ""
+                }
+              >
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/jobs"
+                className={({ isActive }) =>
+                  isActive ? "text-blue-600 font-semibold" : ""
+                }
+              >
+                Jobs
+              </NavLink>
+            </li>
+            {user && (
+              <>
+                <li>
+                  <NavLink
+                    to="/myApplications"
+                    className={({ isActive }) =>
+                      isActive ? "text-blue-600 font-semibold" : ""
+                    }
+                  >
+                    My Applications
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/addJobs"
+                    className={({ isActive }) =>
+                      isActive ? "text-blue-600 font-semibold" : ""
+                    }
+                  >
+                    Add Jobs
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/myJobs"
+                    className={({ isActive }) =>
+                      isActive ? "text-blue-600 font-semibold" : ""
+                    }
+                  >
+                    My Jobs
+                  </NavLink>
+                </li>
+              </>
+            )}
+          </ul>
+        </div>
+
+        {/* Right: Profile or login/register */}
+        <div className="navbar-end">
           {loader ? (
-            <Loader2 />
+            <span className="loading loading-spinner text-blue-500"></span>
           ) : user ? (
             <div className="dropdown dropdown-end">
               <div
@@ -104,7 +178,7 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow"
+                className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 z-[1] w-52 p-2 shadow"
               >
                 <li>
                   <p>
@@ -113,7 +187,7 @@ const Navbar = () => {
                   </p>
                 </li>
                 <li
-                  className="bg-red-600 text-white rounded mt-3"
+                  className="bg-red-600 text-white rounded mt-2"
                   onClick={handleLogout}
                 >
                   <a>Logout</a>
@@ -121,15 +195,14 @@ const Navbar = () => {
               </ul>
             </div>
           ) : (
-            <div>
-              {" "}
+            <div className="flex gap-2">
               <Link
-                to={"/login"}
-                className="btn text-blue-700 border-blue-700 btn-outline "
+                to="/login"
+                className="btn btn-outline text-blue-600 border-blue-600"
               >
                 Login
               </Link>
-              <Link to={"/register"} className="btn bg-blue-700 text-white">
+              <Link to="/register" className="btn bg-blue-600 text-white">
                 Register
               </Link>
             </div>

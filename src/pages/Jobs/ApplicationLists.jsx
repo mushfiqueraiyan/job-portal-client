@@ -4,7 +4,7 @@ const ApplicationLists = ({ myApplicationPromise }) => {
   const applications = use(myApplicationPromise);
 
   return (
-    <div>
+    <div className="max-w-screen-2xl mx-auto">
       <div className="p-4">
         <h1 className="text-2xl font-bold mb-4 text-center mt-15">
           My Applications
@@ -20,6 +20,7 @@ const ApplicationLists = ({ myApplicationPromise }) => {
                 <th>LinkedIn</th>
                 <th>GitHub</th>
                 <th>Resume</th>
+                <th>Status</th>
               </tr>
             </thead>
             <tbody>
@@ -67,6 +68,7 @@ const ApplicationLists = ({ myApplicationPromise }) => {
                         Resume
                       </a>
                     </td>
+                    <td>{info.status}</td>
                   </tr>
                 );
               })}
