@@ -30,7 +30,9 @@ export const router = createBrowserRouter([
       {
         path: "/jobs/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/jobs/${params.id}`),
+          fetch(
+            `https://job-portal-server-azure-seven.vercel.app/jobs/${params.id}`
+          ),
         element: <JobDetails />,
       },
       {
@@ -53,7 +55,9 @@ export const router = createBrowserRouter([
         path: "/applications/job/:id",
         element: <ViewApplications />,
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/applications/job/${params.id}`),
+          fetch(
+            `https://job-portal-server-azure-seven.vercel.app/applications/job/${params.id}`
+          ),
       },
     ],
   },

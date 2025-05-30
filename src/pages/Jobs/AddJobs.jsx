@@ -34,7 +34,7 @@ const AddJobs = () => {
     newJob.status = "active";
 
     axios
-      .post("http://localhost:3000/jobs", newJob)
+      .post("https://job-portal-server-azure-seven.vercel.app/jobs", newJob)
       .then((res) => {
         alert("job added");
       })

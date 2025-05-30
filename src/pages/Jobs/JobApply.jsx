@@ -23,7 +23,10 @@ const JobApply = () => {
     };
 
     axios
-      .post("http://localhost:3000/applications", application)
+      .post(
+        "https://job-portal-server-azure-seven.vercel.app/applications",
+        application
+      )
       .then(() => {})
       .catch((err) => {
         console.log(err);

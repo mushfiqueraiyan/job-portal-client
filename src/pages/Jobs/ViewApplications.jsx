@@ -10,9 +10,12 @@ const ViewApplications = () => {
 
   const handleStatusChange = (e, application_id) => {
     axios
-      .patch(`http://localhost:3000/application/${application_id}`, {
-        status: e.target.value,
-      })
+      .patch(
+        `https://job-portal-server-azure-seven.vercel.app/application/${application_id}`,
+        {
+          status: e.target.value,
+        }
+      )
       .then((res) => {
         console.log(res);
       })

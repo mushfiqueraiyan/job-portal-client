@@ -3,9 +3,9 @@ import MyJobLists from "./MyJobLists";
 import { AuthContext } from "../../context/AuthProvider";
 
 const myJobsPromise = (email) => {
-  return fetch(`http://localhost:3000/jobs?email=${email}`).then((res) =>
-    res.json()
-  );
+  return fetch(
+    `https://job-portal-server-azure-seven.vercel.app/jobs?email=${email}`
+  ).then((res) => res.json());
 };
 
 const MyJobs = () => {

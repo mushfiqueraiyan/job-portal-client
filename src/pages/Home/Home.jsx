@@ -3,9 +3,9 @@ import Banner from "./Banner";
 import JobsCard from "./JobsCard";
 
 const Home = () => {
-  const jobsPromise = fetch("http://localhost:3000/jobs").then((res) =>
-    res.json()
-  );
+  const jobsPromise = fetch(
+    "https://job-portal-server-azure-seven.vercel.app/jobs"
+  ).then((res) => res.json());
 
   return (
     <div>
