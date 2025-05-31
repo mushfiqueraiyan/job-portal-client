@@ -4,7 +4,10 @@ import { AuthContext } from "../../context/AuthProvider";
 
 const myApplicationPromise = (email) => {
   return fetch(
-    `https://job-portal-server-azure-seven.vercel.app/applications?email=${email}`
+    `https://job-portal-server-azure-seven.vercel.app/applications?email=${email}`,
+    {
+      credentials: "include",
+    }
   ).then((res) => res.json());
 };
 

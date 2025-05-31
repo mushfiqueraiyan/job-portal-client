@@ -9,6 +9,7 @@ import {
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../firebase/firebase.init";
+import axios from "axios";
 
 export const AuthContext = createContext();
 
@@ -47,6 +48,18 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setLoader(false);
+
+      if (currentUser?.email) {
+        const userData = { email: currentUser.email };
+        axios
+          .post(
+            "https://job-portal-server-azure-seven.vercel.app/jwt",
+            userData,
+            { withCredentials: true }
+          )
+          .then((res) => console.log(res.data))
+          .catch((err) => console.log(err));
+      }
     });
 
     return () => {
